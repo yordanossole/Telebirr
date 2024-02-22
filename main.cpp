@@ -11,6 +11,8 @@ fstream file;
 //I prefer to use different files for different functions like for PIN and account info
 //and using the same file object for all input and output
 
+
+
 //Function prototype
 void getAccess();
 void checkPIN();
