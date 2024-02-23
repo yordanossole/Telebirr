@@ -90,12 +90,5 @@ void checkPIN(){
     }
     return;
 }
-void balance();
-void buyAirTime();
-void merchantPay();
-void moneyTransfer();
-void withdraw();
-void changePIN();
-void exchangeRate();
-void deposit();
+
 
