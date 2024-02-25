@@ -27,7 +27,7 @@ void exchangeRate();
 void deposit();
 
 //Variable declaration
-short *PIN = new short;
+
 
 int main()
 {
@@ -61,23 +61,41 @@ void getAccess(){
 }
 void checkPIN(){
 //This function checks whether the PIN entered by the user correct or not.
-    short inputPIN;
-    short PIN;
-    short counter = 0;
+  short inputPIN;
+  short PIN;
+  short counter = 1;
+   file.open("PIN", ios::out | ios::binary);
+    if (file.is_open())
+    {
+        file << 0000 << "|" << '\n'; // Writing the PIN code with "|" as delimiter
+        file.close();
+    } else {
+        cout << "Failed to open the file." << endl;
+    }
+
+  file.open("PIN", ios::in | ios::binary);
+    if (file.is_open()) {
+       short PIN;
+       file >> PIN;
+        file.close();
+    } else {
+        cout << "Failed to open the file." << endl;
+    }
+
+
     cout << "\tWelcome to XYZ mobile banking.\n"
          << "Enter 4-digit PIN: ";
     cin >> inputPIN;
-    file.open("PIN", ios::binary | ios::in);
-    file >> PIN;
-    file.close();
     if(counter <= 5){
         if(PIN == inputPIN){
+            cout <<"YOU ARE AUTHORIZED USER! "<< endl;
             Sleep(2000);
             system("cls");
             return;
         }
         else{
             cout << "Incorrect PIN!!!\n";
+            counter++;
             Sleep(2000);
             system("cls");
             checkPIN();
